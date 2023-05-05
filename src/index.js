@@ -99,7 +99,8 @@ function conversation() {
         model: "gpt-3.5-turbo",
         messages: [{role: "user", content: this.input}],
       }
-      const axiosCall = new AxiosCall(body, "https://api.openai.com/v1/chat/completions", "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");
+      let apikey = document.getElementById('inputApiKey').value;
+      const axiosCall = new AxiosCall(body, "https://api.openai.com/v1/chat/completions", apikey);
       let data = axiosCall.postChatgpt();
       data.then((response) => Helper.addMessage(bot.avatar, response.data.choices[0].message.content, bot.name));
     }
